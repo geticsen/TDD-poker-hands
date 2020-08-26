@@ -130,6 +130,18 @@ public class PokerGameTest {
         //then
         Assertions.assertEquals(expect, result);
     }
+    @Test
+    void should_return_black_win_when_play_poker_given_3C3H3D5C6H_4C4H4D6S7C() {
+        //given
+        String whiteString = "3C 3H 5D 5C 6H";
+        String blackString = "4C 4H 6D 6S 7C";
+        String result;
+        String expect = "Black win";
+        //when
+        result = pokerGame.play(whiteString, blackString);
+        //then
+        Assertions.assertEquals(expect, result);
+    }
 
 
 }

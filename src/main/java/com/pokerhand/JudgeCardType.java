@@ -13,6 +13,7 @@ public class JudgeCardType {
         if (kind.size()==2) {
             for (Integer value : kind.values()) {
                 if(value.equals(4)) return CardType.FOUR_KIND;
+                if(value.equals(3)) return CardType.FULL_HOUSE;
             }
         }
         return null;

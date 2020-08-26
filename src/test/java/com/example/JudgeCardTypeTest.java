@@ -75,4 +75,5 @@ public class JudgeCardTypeTest {
         assert result != null;
         Assertions.assertEquals(expect.getWeight(),result.getWeight());
     }
+
 }

@@ -6,4 +6,8 @@ public enum  CardType {
     CardType(Integer weight){
         this.weight = weight;
     }
+
+    public Integer getWeight() {
+        return weight;
+    }
 }

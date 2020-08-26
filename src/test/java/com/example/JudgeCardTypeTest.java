@@ -6,6 +6,10 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import javax.smartcardio.Card;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
 
 public class JudgeCardTypeTest {
     @Test
@@ -14,9 +18,13 @@ public class JudgeCardTypeTest {
         String cards = "3H 5H 7H 8H 9H";
         CardType result ;
         CardType expect = CardType.FLUSH;
+        List<String> cardlist=new ArrayList<>();
+        JudgeCardType judgeCardType=new JudgeCardType();
         //when
-        result = JudgeCardType.getCardsType(cards);
+        Collections.addAll(cardlist,cards.split(" "));
+        result = judgeCardType.getCardsType(cardlist);
         //then
-        Assertions.assertEquals(expect,result);
+        assert result != null;
+        Assertions.assertEquals(expect.getWeight(),result.getWeight());
     }
 }

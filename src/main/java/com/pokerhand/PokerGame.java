@@ -44,12 +44,12 @@ public class PokerGame {
         } else if (whiteType.getWeight() < blackType.getWeight()) {
             return "Black win";
         } else {
-            return getSameTypeResult(whiteType,whitePokers,blackPokers,whiteSorted,blackSorted);
+            return getSameTypeResult(whiteType, whitePokers, blackPokers, whiteSorted, blackSorted);
         }
     }
 
     public static int compare(String first, String second) {
-        return pokers.get(second.substring(0, 1))-pokers.get(first.substring(0, 1)) ;
+        return pokers.get(second.substring(0, 1)) - pokers.get(first.substring(0, 1));
     }
 
     private String getSameTypeResult(CardType cardType, Map<String, Integer> whitePokers, Map<String, Integer> blackPokers,
@@ -61,14 +61,31 @@ public class PokerGame {
             case STRAIGHT_FLUSH:
                 return getNormalResult(whiteSorted, blackSorted);
             case PAIRS:
-                return getPairsResult(whitePokers,blackPokers,whiteSorted,blackSorted);
+                return getPairsResult(whitePokers, blackPokers, whiteSorted, blackSorted);
             case FOUR_KIND:
                 return getFourKindResult(whitePokers, blackPokers);
             case TWO_PAIRS:
-                ;
+                return getTwoPairsResult(whitePokers, blackPokers);
             case THREE_KIND:
             case FULL_HOUSE:
                 return getFullHouseResult(whitePokers, blackPokers);
+        }
+        return null;
+    }
+
+    private String getTwoPairsResult(Map<String, Integer> whitePokers, Map<String, Integer> blackPokers) {
+        String[] whiteKey_value = new String[whitePokers.size()];
+        String[] blackKey_value = new String[whitePokers.size()];
+        int i=0;
+        for (String key : whitePokers.keySet()) {
+            whiteKey_value[i++] = key+" "+whitePokers.get(key);
+        }
+        for (String key : blackPokers.keySet()) {
+            blackKey_value[i++] = key+" "+whitePokers.get(key);
+        }
+
+        for (int j = 0; j < whiteKey_value.length; j++) {
+
         }
         return null;
     }
@@ -100,7 +117,8 @@ public class PokerGame {
             return "Black win";
         }
     }
-    private String  getFullHouseResult(Map<String, Integer> whitePokers, Map<String, Integer> blackPokers){
+
+    private String getFullHouseResult(Map<String, Integer> whitePokers, Map<String, Integer> blackPokers) {
         String whiteKey1 = "";
         String blackKey1 = "";
         for (String key : whitePokers.keySet()) {
@@ -118,7 +136,7 @@ public class PokerGame {
     }
 
     private String getPairsResult(Map<String, Integer> whitePokers, Map<String, Integer> blackPokers,
-                                  List<String> whiteSorted, List<String> blackSorted){
+                                  List<String> whiteSorted, List<String> blackSorted) {
         String whiteKey1 = "";
         String blackKey1 = "";
         for (String key : whitePokers.keySet()) {
@@ -130,9 +148,9 @@ public class PokerGame {
 
         if (pokers.get(whiteKey1.substring(0, 1)) > pokers.get(blackKey1.substring(0, 1))) {
             return "White win";
-        } else if (pokers.get(whiteKey1.substring(0, 1)) < pokers.get(blackKey1.substring(0, 1))){
+        } else if (pokers.get(whiteKey1.substring(0, 1)) < pokers.get(blackKey1.substring(0, 1))) {
             return "Black win";
-        }else{
+        } else {
             for (int i = 0; i < whiteSorted.size(); i++) {
                 if (pokers.get(whiteSorted.get(i).substring(0, 1)) > pokers.get(blackSorted.get(i).substring(0, 1))) {
                     return "White win";

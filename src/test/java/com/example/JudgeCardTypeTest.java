@@ -25,6 +25,22 @@ public class JudgeCardTypeTest {
         result = judgeCardType.getCardsType(cardlist);
         //then
         assert result != null;
+        Assertions.assertEquals(expect,result);
+    }
+
+    @Test
+    void should_return_straight_when_get_cards_type_given_7H6C5D4S3H() {
+        //given
+        String cards = "7H 6C 5D 4S 3H";
+        CardType result ;
+        CardType expect = CardType.STRAIGHT;
+        List<String> cardlist=new ArrayList<>();
+        JudgeCardType judgeCardType=new JudgeCardType();
+        //when
+        Collections.addAll(cardlist,cards.split(" "));
+        result = judgeCardType.getCardsType(cardlist);
+        //then
+        assert result != null;
         Assertions.assertEquals(expect.getWeight(),result.getWeight());
     }
 }

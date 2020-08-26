@@ -27,6 +27,8 @@ public class JudgeCardType {
                 if(value.equals(3)) return CardType.THREE_KIND;
                 if(value.equals(2)) return CardType.TWO_PAIRS;;
             }
+        }else if (kind.size()==4){
+            return CardType.PAIRS;
         }
         return null;
     }

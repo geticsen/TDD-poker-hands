@@ -61,16 +61,14 @@ public class PokerGame {
             case STRAIGHT_FLUSH:
                 return getNormalResult(whiteSorted, blackSorted);
             case PAIRS:
-                ;
+                return getPairsResult(whitePokers,blackPokers,whiteSorted,blackSorted);
             case FOUR_KIND:
                 return getFourKindResult(whitePokers, blackPokers);
             case TWO_PAIRS:
                 ;
+            case THREE_KIND:
             case FULL_HOUSE:
                 return getFullHouseResult(whitePokers, blackPokers);
-            case THREE_KIND:
-                ;
-
         }
         return null;
     }
@@ -106,16 +104,36 @@ public class PokerGame {
         String whiteKey1 = "";
         String blackKey1 = "";
         for (String key : whitePokers.keySet()) {
-            if (whitePokers.get(key) == 4) whiteKey1 = key;
+            if (whitePokers.get(key) == 3) whiteKey1 = key;
         }
         for (String key : blackPokers.keySet()) {
-            if (whitePokers.get(key) == 4) blackKey1 = key;
+            if (blackPokers.get(key) == 3) blackKey1 = key;
         }
 
         if (pokers.get(whiteKey1.substring(0, 1)) > pokers.get(blackKey1.substring(0, 1))) {
             return "White win";
         } else {
             return "Black win";
+        }
+    }
+
+    private String getPairsResult(Map<String, Integer> whitePokers, Map<String, Integer> blackPokers,
+                                  List<String> whiteSorted, List<String> blackSorted){
+        String whiteKey1 = "";
+        String blackKey1 = "";
+        for (String key : whitePokers.keySet()) {
+            if (whitePokers.get(key) == 2) whiteKey1 = key;
+        }
+        for (String key : blackPokers.keySet()) {
+            if (blackPokers.get(key) == 2) blackKey1 = key;
+        }
+
+        if (pokers.get(whiteKey1.substring(0, 1)) > pokers.get(blackKey1.substring(0, 1))) {
+            return "White win";
+        } else if (pokers.get(whiteKey1.substring(0, 1)) < pokers.get(blackKey1.substring(0, 1))){
+            return "Black win";
+        }else{
+            return null;
         }
     }
 }

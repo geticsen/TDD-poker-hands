@@ -43,4 +43,20 @@ public class JudgeCardTypeTest {
         assert result != null;
         Assertions.assertEquals(expect.getWeight(),result.getWeight());
     }
+
+    @Test
+    void should_return_four_kind_when_get_cards_type_given_3H3D3S3C5D() {
+        //given
+        String cards = "3H 3D 3S 3C 5D";
+        CardType result ;
+        CardType expect = CardType.FOUR_KIND;
+        List<String> cardlist=new ArrayList<>();
+        JudgeCardType judgeCardType=new JudgeCardType();
+        //when
+        Collections.addAll(cardlist,cards.split(" "));
+        result = judgeCardType.getCardsType(cardlist);
+        //then
+        assert result != null;
+        Assertions.assertEquals(expect.getWeight(),result.getWeight());
+    }
 }

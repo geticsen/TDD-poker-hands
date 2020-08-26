@@ -133,7 +133,14 @@ public class PokerGame {
         } else if (pokers.get(whiteKey1.substring(0, 1)) < pokers.get(blackKey1.substring(0, 1))){
             return "Black win";
         }else{
-            return null;
+            for (int i = 0; i < whiteSorted.size(); i++) {
+                if (pokers.get(whiteSorted.get(i).substring(0, 1)) > pokers.get(blackSorted.get(i).substring(0, 1))) {
+                    return "White win";
+                } else if (pokers.get(whiteSorted.get(i).substring(0, 1)) < pokers.get(blackSorted.get(i).substring(0, 1))) {
+                    return "Black win";
+                }
+            }
+            return "Tie.";
         }
     }
 }

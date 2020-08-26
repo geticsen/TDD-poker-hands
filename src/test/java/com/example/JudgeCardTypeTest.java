@@ -106,5 +106,20 @@ public class JudgeCardTypeTest {
         assert result != null;
         Assertions.assertEquals(expect.getWeight(),result.getWeight());
     }
+    @Test
+    void should_return_two_pairs_when_get_cards_type_given_6S6C7D9D9C() {
+        //given
+        String cards = "6S 6C 7D 9D 9C";
+        CardType result ;
+        CardType expect = CardType.TWO_PAIRS;
+        List<String> cardlist=new ArrayList<>();
+        JudgeCardType judgeCardType=new JudgeCardType();
+        //when
+        Collections.addAll(cardlist,cards.split(" "));
+        result = judgeCardType.getCardsType(cardlist);
+        //then
+        assert result != null;
+        Assertions.assertEquals(expect.getWeight(),result.getWeight());
+    }
 
 }

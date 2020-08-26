@@ -5,7 +5,9 @@ public enum  CardType {
     STRAIGHT(5),
     FOUR_KIND(8),
     FULL_HOUSE(7),
-    STRAIGHT_FLUSH(9), THREE_KIND(4);
+    STRAIGHT_FLUSH(9),
+    THREE_KIND(4),
+    TWO_PAIRS(3);
     private final Integer weight;
     CardType(Integer weight){
         this.weight = weight;

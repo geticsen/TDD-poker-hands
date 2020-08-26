@@ -9,7 +9,13 @@ public class JudgeCardType {
     public CardType getCardsType(List<String> cards) {
         if (isFlush(cards)) return CardType.FLUSH;
         if (isStraight(cards)) return CardType.STRAIGHT;
-            return null;
+        Map<String, Integer> kind = getKind(cards);
+        if (kind.size()==2) {
+            for (Integer value : kind.values()) {
+                if(value.equals(4)) return CardType.FOUR_KIND;
+            }
+        }
+        return null;
     }
 
     public Boolean isFlush(List<String> cards) {
@@ -38,12 +44,22 @@ public class JudgeCardType {
         pokers.put("Q", 12);
         pokers.put("K", 13);
         pokers.put("A", 14);
-        for(int i=1;i<5;i++){
-            int result=pokers.get(cards.get(i-1).substring(0,1))-pokers.get(cards.get(i).substring(0,1));
-            if(result!=1){
+        for (int i = 1; i < 5; i++) {
+            int result = pokers.get(cards.get(i - 1).substring(0, 1)) - pokers.get(cards.get(i).substring(0, 1));
+            if (result != 1) {
                 return false;
             }
         }
         return true;
+    }
+
+    public Map<String, Integer> getKind(List<String> cards) {
+        Map<String, Integer> kindMap = new HashMap<>();
+        for (String card : cards) {
+            String key = card.substring(0, 1);
+            Integer count = kindMap.get(key);
+            kindMap.put(key, (count == null) ? 1 : count + 1);
+        }
+        return kindMap;
     }
 }

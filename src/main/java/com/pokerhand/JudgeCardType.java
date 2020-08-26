@@ -7,8 +7,15 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 public class JudgeCardType {
     public CardType getCardsType(List<String> cards) {
-        if (isFlush(cards)) return CardType.FLUSH;
-        if (isStraight(cards)) return CardType.STRAIGHT;
+        if(isStraight(cards)) {
+            if(isFlush(cards)){
+                return CardType.STRAIGHT_FLUSH;
+            }else{
+                return CardType.STRAIGHT;
+            }
+        }else if(isFlush(cards)){
+            return CardType.FLUSH;
+        }
         Map<String, Integer> kind = getKind(cards);
         if (kind.size()==2) {
             for (Integer value : kind.values()) {

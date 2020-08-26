@@ -77,7 +77,7 @@ public class JudgeCardTypeTest {
     }
 
     @Test
-    void should_return_staight_flush_when_get_cards_type_given_7H6H5H4H3H() {
+    void should_return_straight_flush_when_get_cards_type_given_7H6H5H4H3H() {
         //given
         String cards = "7H 6H 5H 4H 3H";
         CardType result ;

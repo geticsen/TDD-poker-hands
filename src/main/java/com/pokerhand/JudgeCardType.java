@@ -29,6 +29,8 @@ public class JudgeCardType {
             }
         }else if (kind.size()==4){
             return CardType.PAIRS;
+        }else {
+            return CardType.NORMAL;
         }
         return null;
     }

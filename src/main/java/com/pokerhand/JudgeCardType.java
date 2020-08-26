@@ -7,30 +7,32 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 public class JudgeCardType {
     public CardType getCardsType(List<String> cards) {
-        if(isStraight(cards)) {
-            if(isFlush(cards)){
+        if (isStraight(cards)) {
+            if (isFlush(cards)) {
                 return CardType.STRAIGHT_FLUSH;
-            }else{
+            } else {
                 return CardType.STRAIGHT;
             }
-        }else if(isFlush(cards)){
+        } else if (isFlush(cards)) {
             return CardType.FLUSH;
-        }
-        Map<String, Integer> kind = getKind(cards);
-        if (kind.size()==2) {
-            for (Integer value : kind.values()) {
-                if(value.equals(4)) return CardType.FOUR_KIND;
-                if(value.equals(3)) return CardType.FULL_HOUSE;
+        }else{
+            Map<String, Integer> kind = getKind(cards);
+            if (kind.size() == 2) {
+                for (Integer value : kind.values()) {
+                    if (value.equals(4)) return CardType.FOUR_KIND;
+                    if (value.equals(3)) return CardType.FULL_HOUSE;
+                }
+            } else if (kind.size() == 3) {
+                for (Integer value : kind.values()) {
+                    if (value.equals(3)) return CardType.THREE_KIND;
+                    if (value.equals(2)) return CardType.TWO_PAIRS;
+                    ;
+                }
+            } else if (kind.size() == 4) {
+                return CardType.PAIRS;
+            } else {
+                return CardType.NORMAL;
             }
-        }else if(kind.size()==3){
-            for (Integer value : kind.values()) {
-                if(value.equals(3)) return CardType.THREE_KIND;
-                if(value.equals(2)) return CardType.TWO_PAIRS;;
-            }
-        }else if (kind.size()==4){
-            return CardType.PAIRS;
-        }else {
-            return CardType.NORMAL;
         }
         return null;
     }
@@ -70,7 +72,7 @@ public class JudgeCardType {
         return true;
     }
 
-    public Map<String, Integer> getKind(List<String> cards) {
+    public static Map<String, Integer> getKind(List<String> cards) {
         Map<String, Integer> kindMap = new HashMap<>();
         for (String card : cards) {
             String key = card.substring(0, 1);

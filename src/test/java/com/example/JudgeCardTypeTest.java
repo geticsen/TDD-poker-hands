@@ -76,4 +76,20 @@ public class JudgeCardTypeTest {
         Assertions.assertEquals(expect.getWeight(),result.getWeight());
     }
 
+    @Test
+    void should_return_staight_flush_when_get_cards_type_given_7H6H5H4H3H() {
+        //given
+        String cards = "7H 6H 5H 4H 3H";
+        CardType result ;
+        CardType expect = CardType.STRAIGHT_FLUSH;
+        List<String> cardlist=new ArrayList<>();
+        JudgeCardType judgeCardType=new JudgeCardType();
+        //when
+        Collections.addAll(cardlist,cards.split(" "));
+        result = judgeCardType.getCardsType(cardlist);
+        //then
+        assert result != null;
+        Assertions.assertEquals(expect.getWeight(),result.getWeight());
+    }
+
 }

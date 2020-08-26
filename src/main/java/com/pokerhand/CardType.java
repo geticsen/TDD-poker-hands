@@ -2,7 +2,7 @@ package com.pokerhand;
 
 public enum  CardType {
     FLUSH(6),
-    STRAIGHT(5), FOUR_KIND(8);
+    STRAIGHT(5), FOUR_KIND(8), FULL_HOUSE(7);
     private final Integer weight;
     CardType(Integer weight){
         this.weight = weight;

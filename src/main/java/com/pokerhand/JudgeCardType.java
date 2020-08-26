@@ -22,6 +22,11 @@ public class JudgeCardType {
                 if(value.equals(4)) return CardType.FOUR_KIND;
                 if(value.equals(3)) return CardType.FULL_HOUSE;
             }
+        }else if(kind.size()==3){
+            for (Integer value : kind.values()) {
+                if(value.equals(3)) return CardType.THREE_KIND;
+                if(value.equals(2)) return null;
+            }
         }
         return null;
     }

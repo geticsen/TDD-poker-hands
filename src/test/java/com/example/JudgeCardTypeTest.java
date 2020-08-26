@@ -94,7 +94,7 @@ public class JudgeCardTypeTest {
     @Test
     void should_return_three_kind_when_get_cards_type_given_6S6C6D8D9C() {
         //given
-        String cards = "7H 6H 5H 4H 3H";
+        String cards = "6S 6C 6D 8D 9C";
         CardType result ;
         CardType expect = CardType.THREE_KIND;
         List<String> cardlist=new ArrayList<>();

@@ -136,5 +136,19 @@ public class JudgeCardTypeTest {
         assert result != null;
         Assertions.assertEquals(expect.getWeight(),result.getWeight());
     }
-
+    @Test
+    void should_return_normal_when_get_cards_type_given_3S6C7D8D9C() {
+        //given
+        String cards = "3S 6C 7D 8D 9C";
+        CardType result ;
+        CardType expect = CardType.NORMAL;
+        List<String> cardlist=new ArrayList<>();
+        JudgeCardType judgeCardType=new JudgeCardType();
+        //when
+        Collections.addAll(cardlist,cards.split(" "));
+        result = judgeCardType.getCardsType(cardlist);
+        //then
+        assert result != null;
+        Assertions.assertEquals(expect.getWeight(),result.getWeight());
+    }
 }

@@ -1,9 +1,8 @@
 package com.pokerhand;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.stream.Stream;
 
 public class JudgeCardType {
     public CardType getCardsType(List<String> cards) {
@@ -15,7 +14,7 @@ public class JudgeCardType {
             }
         } else if (isFlush(cards)) {
             return CardType.FLUSH;
-        }else{
+        } else {
             Map<String, Integer> kind = getKind(cards);
             if (kind.size() == 2) {
                 for (Integer value : kind.values()) {
@@ -26,7 +25,6 @@ public class JudgeCardType {
                 for (Integer value : kind.values()) {
                     if (value.equals(3)) return CardType.THREE_KIND;
                     if (value.equals(2)) return CardType.TWO_PAIRS;
-                    ;
                 }
             } else if (kind.size() == 4) {
                 return CardType.PAIRS;
@@ -74,11 +72,15 @@ public class JudgeCardType {
 
     public static Map<String, Integer> getKind(List<String> cards) {
         Map<String, Integer> kindMap = new HashMap<>();
+        Map<String, Integer> sortedMap = new LinkedHashMap<>();
         for (String card : cards) {
             String key = card.substring(0, 1);
             Integer count = kindMap.get(key);
             kindMap.put(key, (count == null) ? 1 : count + 1);
         }
-        return kindMap;
+        Stream<Map.Entry<String, Integer>> sort = kindMap.entrySet().stream();
+        sort.sorted(Map.Entry.comparingByValue()).forEach(e -> sortedMap.put(e.getKey(), e.getValue()));
+        System.out.println(sortedMap);
+        return sortedMap;
     }
 }

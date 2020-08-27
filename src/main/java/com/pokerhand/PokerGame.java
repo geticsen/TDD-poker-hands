@@ -74,20 +74,49 @@ public class PokerGame {
     }
 
     private String getTwoPairsResult(Map<String, Integer> whitePokers, Map<String, Integer> blackPokers) {
-        String[] whiteKey_value = new String[whitePokers.size()];
-        String[] blackKey_value = new String[whitePokers.size()];
-        int i=0;
+        Integer whiteKey =null;
+        Integer blackKey = null;
+        Integer[] whiteKeyPair = new Integer[whitePokers.size()-1];
+        Integer[] blackKeyPair = new Integer[whitePokers.size()-1];
+        int i = 0;
         for (String key : whitePokers.keySet()) {
-            whiteKey_value[i++] = key+" "+whitePokers.get(key);
+            if (whitePokers.get(key)==1){
+                whiteKey = pokers.get(key.substring(0,1));
+            }else {
+                whiteKeyPair[i++] = pokers.get(key.substring(0,1));
+            }
         }
+        i=0;
         for (String key : blackPokers.keySet()) {
-            blackKey_value[i++] = key+" "+whitePokers.get(key);
+            if (blackPokers.get(key)==1){
+                blackKey = pokers.get(key.substring(0,1));
+            }else {
+                blackKeyPair[i++] = pokers.get(key.substring(0,1));
+            }
         }
-
-        for (int j = 0; j < whiteKey_value.length; j++) {
-
+        Arrays.sort(whiteKeyPair, Collections.reverseOrder());
+        Arrays.sort(blackKeyPair, Collections.reverseOrder());
+        if (whiteKeyPair[0].equals(blackKeyPair[0])&&whiteKeyPair[1].equals(blackKeyPair[1])){
+            if (whiteKey>blackKey){
+                return "White win";
+            }else if (whiteKey.equals(blackKey)){
+                return "Tie.";
+            }else {
+                return "Black win";
+            }
+        }else if (whiteKeyPair[0].equals(blackKeyPair[0])){
+            if (whiteKeyPair[1]>blackKeyPair[1]){
+                return "White win";
+            }else {
+                return "Black win";
+            }
+        }else{
+            if (whiteKeyPair[0]>blackKeyPair[0]){
+                return "White win";
+            }else {
+                return "Black win";
+            }
         }
-        return null;
     }
 
     private String getNormalResult(List<String> whiteSorted, List<String> blackSorted) {
